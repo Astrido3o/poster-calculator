@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宇宙主題海報價格計算機</title>
+  <style>
+    body {
+      background: linear-gradient(180deg, #0b0c2a 0%, #1c1d4f 100%);
+      color: #ffffff;
+      font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://cdn.pixabay.com/photo/2013/07/18/10/56/space-163403_960_720.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    header, footer {
+      background-color: rgba(30, 30, 60, 0.8);
+      padding: 1em;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+      color: #ffd700;
+    }
+    nav a {
+      color: #ffcc70;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    main {
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      background-color: rgba(0,0,0,0.4);
+      border-radius: 20px;
+      margin: 1em auto;
+      width: 80%;
+      max-width: 600px;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 1em;
+      color: #b0e0ff;
+    }
+    input {
+      margin-top: 0.3em;
+      padding: 0.6em;
+      font-size: 1em;
+      width: 200px;
+      border-radius: 12px;
+      border: 2px solid #88ccff;
+      background-color: #001f33;
+      color: #fff;
+      box-shadow: inset 2px 2px 5px rgba(0,0,0,0.5);
+    }
+    button {
+      margin-top: 1em;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #88ccff, #4b0082);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.1s ease-in-out;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .result {
+      margin-top: 1em;
+      font-size: 1.5em;
+      color: #ffff99;
+      font-weight: bold;
+    }
+    footer p {
+      font-size: 0.9em;
+      color: #cccccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🪐 宇宙主題海報價格計算機</h1>
+    <nav>
+      <a href="#calculator">計算器</a>
+      <a href="#about">關於我們</a>
+    </nav>
+  </header>
+  <main id="calculator">
+    <label>
+      長 (cm):
+      <input type="number" id="length" placeholder="輸入長度">
+    </label>
+    <label>
+      寬 (cm):
+      <input type="number" id="width" placeholder="輸入寬度">
+    </label>
+    <button onclick="calculatePrice()">👾 計算價格</button>
+    <div class="result" id="result"></div>
+  </main>
+  <main id="about">
+    <h2>👽 關於我們</h2>
+    <p>這是一個用來快速計算海報印刷價格的小工具。只要輸入長與寬（單位公分），系統會自動計算出價格。
+      價格公式為：<br>
+      <code>長 × 寬 ÷ 900 → 無條件進位 → × 60 元</code>
+    </p>
+    <p>此工具由 ChatGPT 與設計師 Astrid 協作開發 🚀</p>
+  </main>
+  <footer>
+    <p>&copy; 2025 Astrid Design Tools</p>
+  </footer>
+  <script>
+    function calculatePrice() {
+      const length = parseFloat(document.getElementById('length').value);
+      const width = parseFloat(document.getElementById('width').value);
+      if (isNaN(length) || isNaN(width)) {
+        document.getElementById('result').textContent = '請正確輸入長與寬';
+        return;
+      }
+      const areaUnits = length * width / 900;
+      const roundedUnits = Math.ceil(areaUnits);
+      const price = roundedUnits * 60;
+      document.getElementById('result').textContent = `價格：$${price} 元`;
+    }
+  </script>
+</body>
+</html>
